@@ -2,73 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanManager : MonoBehaviour
+public class SoilManager : MonoBehaviour
 {
-    [SerializeField] GameObject canImage;
+    [SerializeField] GameObject soilText;
+    [SerializeField] GameObject soilImage;
     [SerializeField] GameObject alertText;
-    [SerializeField] GameObject canButton;
-    [SerializeField] GameObject itembox2;
-    public GameObject itembox2selected;
+    public GameObject backButton;
+    [SerializeField] GameObject itembox6;
+    public GameObject itembox6selected;
 
     // 取得した後詳細表示
-    [SerializeField] GameObject canImage2;
-    [SerializeField] GameObject cantextPanel2;
+    [SerializeField] GameObject soilImage2;
+    [SerializeField] GameObject soiltextPanel2;
 
     // 外部スクリプト
     [SerializeField] MirrorManager mirrorManager;
+    [SerializeField] CanManager canManager;
     [SerializeField] TreeBarkManager treebarkManager;
     [SerializeField] StonesManager stonesManager;
     [SerializeField] BranchesManager branchesManager;
-    [SerializeField] SoilManager soilManager;
     [SerializeField] BananaManager bananaManager;
 
-    public bool cansw;
+    public bool soilsw;
 
     void Start()
     {
-        CanSetActive(false);
-        canButton.SetActive(true);
-        itembox2.SetActive(false);
-        cansw = false;
-        itembox2selected.SetActive(false);
+        soilText.SetActive(true);
+        soilImage.SetActive(false);
+        alertText.SetActive(false);
+        backButton.SetActive(false);
+        itembox6.SetActive(false);
+        soilsw = false;
+        itembox6selected.SetActive(false);
 
         // 取得した後詳細表示
-        canImage2.SetActive(false);
-        cantextPanel2.SetActive(false);
+        soilImage2.SetActive(false);
+        soiltextPanel2.SetActive(false);
 
         // 外部スクリプト
         mirrorManager.GetComponentInParent<MirrorManager>();
+        canManager.GetComponentInParent<CanManager>();
         treebarkManager.GetComponentInParent<TreeBarkManager>();
         stonesManager.GetComponentInParent<StonesManager>();
         branchesManager.GetComponentInParent<BranchesManager>();
-        soilManager.GetComponentInParent<SoilManager>();
         bananaManager.GetComponentInParent<BananaManager>();
     }
 
-    void CanSetActive(bool isShow)
-    {
-        canImage.SetActive(isShow);
-        alertText.SetActive(isShow);
-    }
 
-    // 落ちている缶詰を押すと缶詰とテキストを表示
-    public void OnPushCanImageButton()
+    // Textを押すと次の画面表示
+    public void OnPushSoilTextButton()
     {
-        CanSetActive(true);
-        canButton.SetActive(false);
-        itembox2.SetActive(true);
-        cansw = true;
+        soilText.SetActive(false);
+        soilImage.SetActive(true);
+        alertText.SetActive(true);
+        itembox6.SetActive(true);
+        soilsw = true;
     }
 
     // ImageかTextをクリックするとこれらを非表示
     bool sw;
 
-    public void CanImagePush()
+    public void SoilImagePush()
     {
         sw = true;
     }
 
-    public void CanTextPush()
+    public void SoilTextPush()
     {
         sw = true;
     }
@@ -77,21 +76,23 @@ public class CanManager : MonoBehaviour
     {
         if (sw)
         {
-            CanSetActive(false);
+            soilImage.SetActive(false);
+            alertText.SetActive(false);
+            backButton.SetActive(true);
         }
     }
 
     // アイテムの選択
     public void SelectItem()
     {
-        if (itembox2.activeSelf)
+        if (itembox6.activeSelf)
         {
-            itembox2selected.SetActive(true);
+            itembox6selected.SetActive(true);
             mirrorManager.itembox1selected.SetActive(false);
+            canManager.itembox2selected.SetActive(false);
             treebarkManager.itembox3selected.SetActive(false);
             stonesManager.itembox4selected.SetActive(false);
             branchesManager.itembox5selected.SetActive(false);
-            soilManager.itembox6selected.SetActive(false);
             bananaManager.itembox7selected.SetActive(false);
         }
     }
@@ -99,17 +100,17 @@ public class CanManager : MonoBehaviour
     // アイテムの詳細表示
     public void OpenDetail()
     {
-        if (itembox2selected.activeSelf)
+        if (itembox6selected.activeSelf)
         {
-            canImage2.SetActive(true);
-            cantextPanel2.SetActive(true);
+            soilImage2.SetActive(true);
+            soiltextPanel2.SetActive(true);
         }
     }
 
     // バツボタンを押すと詳細非表示
     public void CloseDetail()
     {
-        canImage2.SetActive(false);
-        cantextPanel2.SetActive(false);
+        soilImage2.SetActive(false);
+        soiltextPanel2.SetActive(false);
     }
 }

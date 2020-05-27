@@ -2,42 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanManager : MonoBehaviour
+public class MirrorManager : MonoBehaviour
 {
-    [SerializeField] GameObject canImage;
+    [SerializeField] GameObject mirrorImage;
     [SerializeField] GameObject alertText;
-    [SerializeField] GameObject canButton;
-    [SerializeField] GameObject itembox2;
-    public GameObject itembox2selected;
+    [SerializeField] GameObject mirrorButton;
+    [SerializeField] GameObject itembox1;
+    public GameObject itembox1selected;
 
     // 取得した後詳細表示
-    [SerializeField] GameObject canImage2;
-    [SerializeField] GameObject cantextPanel2;
+    [SerializeField] GameObject mirrorImage2;
+    [SerializeField] GameObject mirrortextPanel2;
 
     // 外部スクリプト
-    [SerializeField] MirrorManager mirrorManager;
+    [SerializeField] CanManager canManager;
     [SerializeField] TreeBarkManager treebarkManager;
     [SerializeField] StonesManager stonesManager;
     [SerializeField] BranchesManager branchesManager;
     [SerializeField] SoilManager soilManager;
     [SerializeField] BananaManager bananaManager;
 
-    public bool cansw;
+    public bool mirrorsw;
 
     void Start()
     {
-        CanSetActive(false);
-        canButton.SetActive(true);
-        itembox2.SetActive(false);
-        cansw = false;
-        itembox2selected.SetActive(false);
+        MirrorSetActive(false);
+        mirrorButton.SetActive(true);
+        itembox1.SetActive(false);
+        mirrorsw = false;
+        itembox1selected.SetActive(false);
 
         // 取得した後詳細表示
-        canImage2.SetActive(false);
-        cantextPanel2.SetActive(false);
+        mirrorImage2.SetActive(false);
+        mirrortextPanel2.SetActive(false);
 
         // 外部スクリプト
-        mirrorManager.GetComponentInParent<MirrorManager>();
+        canManager.GetComponentInParent<CanManager>();
         treebarkManager.GetComponentInParent<TreeBarkManager>();
         stonesManager.GetComponentInParent<StonesManager>();
         branchesManager.GetComponentInParent<BranchesManager>();
@@ -45,30 +45,30 @@ public class CanManager : MonoBehaviour
         bananaManager.GetComponentInParent<BananaManager>();
     }
 
-    void CanSetActive(bool isShow)
+    void MirrorSetActive(bool isShow)
     {
-        canImage.SetActive(isShow);
+        mirrorImage.SetActive(isShow);
         alertText.SetActive(isShow);
     }
 
-    // 落ちている缶詰を押すと缶詰とテキストを表示
-    public void OnPushCanImageButton()
+    // 落ちている鏡を押すと鏡とテキストを表示
+    public void OnPushMirrorImageButton()
     {
-        CanSetActive(true);
-        canButton.SetActive(false);
-        itembox2.SetActive(true);
-        cansw = true;
+        MirrorSetActive(true);
+        mirrorButton.SetActive(false);
+        itembox1.SetActive(true);
+        mirrorsw = true;
     }
 
     // ImageかTextをクリックするとこれらを非表示
     bool sw;
 
-    public void CanImagePush()
+    public void MirrorImagePush()
     {
         sw = true;
     }
 
-    public void CanTextPush()
+    public void MirrorTextPush()
     {
         sw = true;
     }
@@ -77,17 +77,17 @@ public class CanManager : MonoBehaviour
     {
         if (sw)
         {
-            CanSetActive(false);
+            MirrorSetActive(false);
         }
     }
 
     // アイテムの選択
     public void SelectItem()
     {
-        if (itembox2.activeSelf)
+        if (itembox1.activeSelf)
         {
-            itembox2selected.SetActive(true);
-            mirrorManager.itembox1selected.SetActive(false);
+            itembox1selected.SetActive(true);
+            canManager.itembox2selected.SetActive(false);
             treebarkManager.itembox3selected.SetActive(false);
             stonesManager.itembox4selected.SetActive(false);
             branchesManager.itembox5selected.SetActive(false);
@@ -99,17 +99,17 @@ public class CanManager : MonoBehaviour
     // アイテムの詳細表示
     public void OpenDetail()
     {
-        if (itembox2selected.activeSelf)
+        if (itembox1selected.activeSelf)
         {
-            canImage2.SetActive(true);
-            cantextPanel2.SetActive(true);
+            mirrorImage2.SetActive(true);
+            mirrortextPanel2.SetActive(true);
         }
     }
 
     // バツボタンを押すと詳細非表示
     public void CloseDetail()
     {
-        canImage2.SetActive(false);
-        cantextPanel2.SetActive(false);
+        mirrorImage2.SetActive(false);
+        mirrortextPanel2.SetActive(false);
     }
 }

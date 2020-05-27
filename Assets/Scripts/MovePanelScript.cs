@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovePanelScript : MonoBehaviour
 {
-    //各パネルを取得
+    // 各パネルを取得
     public GameObject panel1;
     public GameObject panel2;
     public GameObject panel3;
@@ -15,10 +15,13 @@ public class MovePanelScript : MonoBehaviour
     public GameObject seaPanel;
     public GameObject sandPanel;
     public GameObject bananaPanel;
+    public GameObject sunPanel;
+    public GameObject soilPanel;
+    public GameObject seaWaterPanel;
     public GameObject itemBox;
 
 
-    //縦移動
+    // 縦移動
     public void gotoPanel1()
     {
         panel1.SetActive(true);
@@ -30,6 +33,9 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(false);
         sandPanel.SetActive(false);
         bananaPanel.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
         itemBox.SetActive(true);
     }
 
@@ -44,6 +50,9 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(false);
         sandPanel.SetActive(false);
         bananaPanel.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
         itemBox.SetActive(true);
     }
 
@@ -58,10 +67,13 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(false);
         sandPanel.SetActive(false);
         bananaPanel.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
         itemBox.SetActive(true);
     }
 
-    //横移動
+    // 横移動
     public void gotoPanel4()
     {
         panel1.SetActive(false);
@@ -73,6 +85,9 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(false);
         sandPanel.SetActive(false);
         bananaPanel.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
         itemBox.SetActive(true);
     }
 
@@ -87,6 +102,9 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(false);
         sandPanel.SetActive(false);
         bananaPanel.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
         itemBox.SetActive(true);
     }
 
@@ -101,6 +119,9 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(false);
         sandPanel.SetActive(false);
         bananaPanel.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
         itemBox.SetActive(true);
     }
 
@@ -115,7 +136,10 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(true);
         sandPanel.SetActive(false);
         bananaPanel.SetActive(false);
-        itemBox.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
+        itemBox.SetActive(true);
     }
 
     public void OnPushSandPanelButton()
@@ -129,6 +153,9 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(false);
         sandPanel.SetActive(true);
         bananaPanel.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
         itemBox.SetActive(true);
     }
 
@@ -143,7 +170,60 @@ public class MovePanelScript : MonoBehaviour
         seaPanel.SetActive(false);
         sandPanel.SetActive(false);
         bananaPanel.SetActive(true);
-        itemBox.SetActive(false);
+        sunPanel.SetActive(false);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
+        itemBox.SetActive(true);
     }
 
+    public void OnPushSunPanelButton()
+    {
+        panel1.SetActive(false);
+        panel2.SetActive(false);
+        panel3.SetActive(false);
+        panel4.SetActive(false);
+        panel5.SetActive(false);
+        panel6.SetActive(false);
+        seaPanel.SetActive(false);
+        sandPanel.SetActive(false);
+        bananaPanel.SetActive(false);
+        sunPanel.SetActive(true);
+        soilPanel.SetActive(false);
+        seaWaterPanel.SetActive(false);
+        itemBox.SetActive(true);
+    }
+
+    public void OnPushSoilPanelButton()
+    {
+        panel1.SetActive(false);
+        panel2.SetActive(false);
+        panel3.SetActive(false);
+        panel4.SetActive(false);
+        panel5.SetActive(false);
+        panel6.SetActive(false);
+        seaPanel.SetActive(false);
+        sandPanel.SetActive(false);
+        bananaPanel.SetActive(false);
+        sunPanel.SetActive(true);
+        soilPanel.SetActive(true);
+        seaWaterPanel.SetActive(false);
+        itemBox.SetActive(true);
+    }
+
+    public void OnPushSeaWaterPanelButton()
+    {
+        panel1.SetActive(false);
+        panel2.SetActive(false);
+        panel3.SetActive(false);
+        panel4.SetActive(false);
+        panel5.SetActive(false);
+        panel6.SetActive(false);
+        seaPanel.SetActive(false);
+        sandPanel.SetActive(false);
+        bananaPanel.SetActive(false);
+        sunPanel.SetActive(true);
+        soilPanel.SetActive(true);
+        seaWaterPanel.SetActive(true);
+        itemBox.SetActive(true);
+    }
 }

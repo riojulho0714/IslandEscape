@@ -2,119 +2,114 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BananaManager : MonoBehaviour
+public class BranchesManager : MonoBehaviour
 {
-	[SerializeField] GameObject bananaImage;
+	[SerializeField] GameObject branchesImage;
 	[SerializeField] GameObject alertText;
-	public GameObject bananaPanel;
-	public GameObject panel6;
-	public GameObject itemBox;
-    [SerializeField] GameObject itembox7;
-    public GameObject itembox7selected;
+    [SerializeField] GameObject branchesButton;
+    [SerializeField] GameObject itembox5;
+    public GameObject itembox5selected;
 
     // 取得した後詳細表示
-    [SerializeField] GameObject bananaImage2;
-    [SerializeField] GameObject bananatextPanel2;
+    [SerializeField] GameObject branchesImage2;
+    [SerializeField] GameObject branchestextPanel2;
 
     // 外部スクリプト
     [SerializeField] MirrorManager mirrorManager;
     [SerializeField] CanManager canManager;
     [SerializeField] TreeBarkManager treebarkManager;
     [SerializeField] StonesManager stonesManager;
-    [SerializeField] BranchesManager branchesManager;
     [SerializeField] SoilManager soilManager;
+    [SerializeField] BananaManager bananaManager;
 
-    public bool bananasw;
+    public bool branchessw;
 
     void Start()
-	{
-		BananaSetActive(false);
-        itembox7.SetActive(false);
-        bananasw = false;
-        itembox7selected.SetActive(false);
+    {
+		BranchesSetActive(false);
+        branchesButton.SetActive(true);
+        itembox5.SetActive(false);
+        branchessw = false;
+        itembox5selected.SetActive(false);
 
         // 取得した後詳細表示
-        bananaImage2.SetActive(false);
-        bananatextPanel2.SetActive(false);
+        branchesImage2.SetActive(false);
+        branchestextPanel2.SetActive(false);
 
         // 外部スクリプト
         mirrorManager.GetComponentInParent<MirrorManager>();
         canManager.GetComponentInParent<CanManager>();
         treebarkManager.GetComponentInParent<TreeBarkManager>();
         stonesManager.GetComponentInParent<StonesManager>();
-        branchesManager.GetComponentInParent<BranchesManager>();
         soilManager.GetComponentInParent<SoilManager>();
+        bananaManager.GetComponentInParent<BananaManager>();
     }
 
-	void BananaSetActive(bool isShow)
+	void BranchesSetActive(bool isShow)
 	{
-		bananaImage.SetActive(isShow);
+		branchesImage.SetActive(isShow);
 		alertText.SetActive(isShow);
 	}
 
-	// バナナを押すとバナナとテキストを表示
-	public void OnPushBananaImageButton()
+	// 落ちている小枝を押すと小枝とテキストを表示
+	public void OnPushBranchesImageButton()
 	{
-		BananaSetActive(true);
-        itembox7.SetActive(true);
-        bananasw = true;
+		BranchesSetActive(true);
+        branchesButton.SetActive(false);
+        itembox5.SetActive(true);
+        branchessw = true;
     }
 
     // ImageかTextをクリックするとこれらを非表示
     bool sw;
 
-	public void BananaImagePush()
+	public void BranchesImagePush()
 	{
 		sw = true;
 	}
 
-	public void BananaTextPush()
+	public void BranchesTextPush()
 	{
 		sw = true;
 	}
 
-	void FixedUpdate()
+	void Update()
 	{
 		if (sw)
 		{
-			BananaSetActive(false);
-			bananaPanel.SetActive(false);
-			panel6.SetActive(true);
-			itemBox.SetActive(true);
+			BranchesSetActive(false);
 		}
 	}
 
     // アイテムの選択
     public void SelectItem()
     {
-        if (itembox7.activeSelf)
+        if (itembox5.activeSelf)
         {
-            itembox7selected.SetActive(true);
+            itembox5selected.SetActive(true);
             mirrorManager.itembox1selected.SetActive(false);
             canManager.itembox2selected.SetActive(false);
             treebarkManager.itembox3selected.SetActive(false);
             stonesManager.itembox4selected.SetActive(false);
-            branchesManager.itembox5selected.SetActive(false);
             soilManager.itembox6selected.SetActive(false);
+            bananaManager.itembox7selected.SetActive(false);
         }
     }
 
     // アイテムの詳細表示
     public void OpenDetail()
     {
-        if (itembox7selected.activeSelf)
+        if (itembox5selected.activeSelf)
         {
-            bananaImage2.SetActive(true);
-            bananatextPanel2.SetActive(true);
+            branchesImage2.SetActive(true);
+            branchestextPanel2.SetActive(true);
         }
     }
 
     // バツボタンを押すと詳細非表示
     public void CloseDetail()
     {
-        bananaImage2.SetActive(false);
-        bananatextPanel2.SetActive(false);
+        branchesImage2.SetActive(false);
+        branchestextPanel2.SetActive(false);
     }
 }
-
-
